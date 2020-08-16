@@ -17,6 +17,38 @@
       <div class="row">
         <h1 class="col s12">Инфляция в России</h1>
         <div class="col s12 m8">
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                {% for head in headers %}
+                  <th><b>{{ head }}</b></th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for segment in inflation %}
+                <tr>
+                  {% for key, value in segment.items %}
+                    {% if key == 'Суммарная' %}
+                      <td bgcolor="#777777">{{value}}</td>
+                    {% else %}
+                      {%if value < 0 %}
+                        <td bgcolor="#008800">{{value}}</td>
+                      {% elif value > 5 %}
+                        <td bgcolor="#660000">{{value}}</td>
+                      {% elif value > 2 %}
+                        <td bgcolor="#990000">{{value}}</td>
+                      {% elif value > 1 %}
+                        <td bgcolor="#CC0000">{{value}}</td>
+                      {% else %}
+                        <td>{{value}}</td>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         
         <!-- Ваша логика -->
 
